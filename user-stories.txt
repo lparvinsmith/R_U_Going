@@ -1,0 +1,22 @@
+
+As a user, I want to browse events, ordered by date, complete with info on title, venue and a brief description.
+
+I want to be able to expand the event description to read all text for an event that interests me, and to have an external link if applicable.
+
+I want to register and log in so that I can keep track of events I am going to.
+
+I want to let my classmates know I’m going to a given event at the click of a button.
+
+I want to be able to see how many of my fellow users are going to a given event, and see the users who are going.
+
+I want to be able to create events that will be added to the list.
+
+I want to be able to update events if I have more information.
+
+I want to be able to delete events, and receive a warning before it gets deleted.
+
+REACH
+
+I want to search events by date, keyword, or both, and have matches appear in place of the event list.
+
+I want to be able to use this site easily on my smartphone.     
