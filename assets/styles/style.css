@@ -1,3 +1,40 @@
 body {
-  background-color: red;
+  background-image: url(http://i.imgur.com/7kvpdGC.jpg);
+  background-size:cover;
+}
+
+.navbar-static-top {
+  background-color: rgba(89, 82, 65, 0.8);
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding: 10px;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 800px;
+
+}
+
+#add-event {
+  margin: 10px;
+}
+
+.left {
+  background-color: rgba(184, 174, 156, 0.6);
+  height: 800px;
+}
+
+.right {
+  background-color: rgba(172, 207, 204, 0.6);
+  height: 800px;
+}
+
+footer {
+  background-color: rgba(138, 9, 23, 0.8);
+  text-align: right;
+  padding: 10px;
+  padding-right: 20px;
+  color: white;
 }
