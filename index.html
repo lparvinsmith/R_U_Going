@@ -15,10 +15,12 @@
         <h1>Example page header <small>Subtext for header</small></h1>
       </div> -->
       <div class="left col-md-2 pull-left">
-        <input type="text" class="form-control" placeholder="Username"><br>
-        <input type="password" class="form-control" placeholder="Password"><br>
-        <button class="btn btn-default" id="register">Register</button>
-        <button class="btn btn-default" id="login">Login</button>
+        <div class="authentication">
+          <input type="text" class="form-control" placeholder="Username"><br>
+          <input type="password" class="form-control" placeholder="Password"><br>
+          <button class="btn btn-default" id="register">Register</button>
+          <button class="btn btn-default" id="login">Login</button>
+        </div>
       </div>
       <div class="content col-md-6 col-md-offset-1">
         <button class="btn btn-default" id="add-event">Add Event</button>
@@ -31,7 +33,7 @@
         </nav> -->
       </div>
       <div class="right col-md-2 pull-right">
-        <p>U R going to <span id="your-events">X</span> events!</p>
+        <div class="well">U R going to <br><span id="your-events">0</span> events!</div>
       </div>
     </div>
     <footer class="footer">
