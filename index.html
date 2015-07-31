@@ -11,9 +11,7 @@
       <h4>Let's get to know the Boston tech community together</h4>
     </nav>
     <div class="main container-fluid">
-      <!-- <div class="page-header">
-        <h1>Example page header <small>Subtext for header</small></h1>
-      </div> -->
+
       <div class="left col-md-2 pull-left">
         <div class="authentication">
           <input type="text" class="form-control" placeholder="Username"><br>
@@ -23,6 +21,22 @@
         </div>
       </div>
       <div class="content col-md-6 col-md-offset-1">
+
+        <script id="event-index" type="text/x-handlebars-template">
+        {{#each events}}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{title}} on {{date}} at {{venue}}</h3>
+          </div>
+          <div class="panel-body">
+            {{description}} {{link}}<br>
+            {{number-going}} going<br>
+            <button class="btn btn-default" id="going">Im going!</button>
+          </div>
+        </div>
+        {{/each}}
+        </script>
+
         <button class="btn btn-default" id="add-event">Add Event</button>
 
       <!--   <nav>
