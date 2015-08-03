@@ -13,6 +13,8 @@
     <div class="main container-fluid">
 
       <div class="left col-md-2 pull-left">
+
+        <!-- Authentication buttons -->
         <div class="authentication">
           <input type="text" class="form-control" placeholder="Username"><br>
           <input type="password" class="form-control" placeholder="Password"><br>
@@ -22,6 +24,7 @@
       </div>
       <div class="content col-md-6 col-md-offset-1">
 
+        <!-- Handlebars list of events -->
         <script id="event-index" type="text/x-handlebars-template">
         {{#each events}}
         <div class="panel panel-default">
@@ -30,14 +33,44 @@
           </div>
           <div class="panel-body">
             {{description}} {{link}}<br>
-            {{number-going}} going<br>
+            {{number_going}} going<br>
             <button class="btn btn-default" id="im-going">Im going!</button>
           </div>
         </div>
         {{/each}}
         </script>
 
-        <button class="btn btn-default" id="add-event">Add Event</button>
+        <!-- Button trigger modal -->
+        <button type="button" id="add-event" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Create Event
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form col-sm-12 center-block">
+                  <div class="form-group">
+                    <input type="text" id="event_date_time" class="form-control input-md" placeholder="Date and Time">
+                    <input type="text" id="event_title" class="form-control input-md" placeholder="Event title">
+                    <input type="text" id="event_venue" class="form-control input-md" placeholder="Venue">
+                    <input type="text" id="event_description" class="form-control input-md" placeholder="Please provide a brief description">
+                  </div>
+                </form>
+                Needs to make description field larger.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
       <!--   <nav>
           <ul class="pager">
@@ -55,7 +88,6 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <!-- <script src="node_modules/jquery/dist/jquery.js"></script> -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="assets/scripts/handlebars-v3.0.3.js" type="text/javascript"></script>
     <script src="assets/scripts/main.js" type="text/javascript"></script>
