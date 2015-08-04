@@ -16,8 +16,8 @@
 
         <!-- Authentication buttons -->
         <div class="authentication">
-          <input type="text" class="form-control" placeholder="Username"><br>
-          <input type="password" class="form-control" placeholder="Password"><br>
+          <input type="text" id="email" class="form-control" placeholder="Username"><br>
+          <input type="password" id="password" class="form-control" placeholder="Password"><br>
           <button class="btn btn-default" id="register">Register</button>
           <button class="btn btn-default" id="login">Login</button>
         </div>
@@ -64,13 +64,13 @@
                   <div class="form-group">
                   To create an event, please fill in some information:<br><br>
                     <label for="event-date-time">Date and Time</label>
-                    <input type="text" id="event_date_time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
+                    <input type="text" id="event-date-time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
                     <label for="event-title">Event title</label>
                     <input type="text" id="event-title" class="form-control input-md">
                     <label for="event-venue">Venue</label>
                     <input type="text" id="event-venue" class="form-control input-md">
-                    <label for="event-title">Brief description</label>
-                    <textarea id="event_description" class="form-control" rows="3"></textarea>
+                    <label for="event-description">Brief description</label>
+                    <textarea id="event-description" class="form-control" rows="3"></textarea>
                     <label for="event-link">External link (optional)</label>
                     <input type="text" id="event-link" class="form-control input-md">
                   </div>
@@ -102,6 +102,7 @@
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="assets/scripts/handlebars-v3.0.3.js" type="text/javascript"></script>
+    <script src="assets/scripts/simpleStorage.js" type="text/javascript"></script>
     <script src="assets/scripts/main.js" type="text/javascript"></script>
     <script src="assets/scripts/ui.js" type="text/javascript"></script>
     <script src="assets/scripts/ajax.js" type="text/javascript"></script>
