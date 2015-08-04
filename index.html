@@ -56,13 +56,19 @@
               <div class="modal-body">
                 <form class="form col-sm-12 center-block">
                   <div class="form-group">
-                    <input type="text" id="event_date_time" class="form-control input-md" placeholder="Date and Time">
-                    <input type="text" id="event_title" class="form-control input-md" placeholder="Event title">
-                    <input type="text" id="event_venue" class="form-control input-md" placeholder="Venue">
-                    <input type="text" id="event_description" class="form-control input-md" placeholder="Please provide a brief description">
+                  To create an event, please fill in some information:<br><br>
+                    <label for="event_date_time">Date and Time</label>
+                    <input type="text" id="event_date_time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
+                    <label for="event_title">Event title</label>
+                    <input type="text" id="event_title" class="form-control input-md">
+                    <label for="event_venue">Venue</label>
+                    <input type="text" id="event_venue" class="form-control input-md">
+                    <label for="event_title">Brief description</label>
+                    <textarea id="event_description" class="form-control" rows="3"></textarea>
+                    <label for="event_link">External link (optional)</label>
+                    <input type="text" id="event_link" class="form-control input-md">
                   </div>
                 </form>
-                Needs to make description field larger.
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
