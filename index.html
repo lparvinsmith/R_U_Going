@@ -39,7 +39,7 @@
             {{number_going}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
 
-            <button class="btn btn-default update-event" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
+            <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
 
             <button class="btn btn-default delete-event" data-id={{id}}>Delete</button>
           </div>
@@ -53,28 +53,6 @@
           3. Then your AJAX code can use that hidden input field along with the visible ones to build a JSON payload to send to the server.
         -->
 
-        <!-- Handlebars template for eventForm-->
-        <script id="event-form-partial" type="text/x-handlebars-template">
-        <form class="form col-sm-12 center-block">
-          <div class="form-group">
-          To update an event, please correct the following information:<br><br>
-            <label for="event-date-time">Date and Time</label>
-            <input type="text" id="event-date-time" class="form-control input-md" value={{occurs_at}}>
-            <label for="event-title">Event title</label>
-            <input type="text" id="event-title" class="form-control input-md" value={{title}}>
-            <label for="event-venue">Venue</label>
-            <input type="text" id="event-venue" class="form-control input-md" value={{venue}}>
-            <label for="event-description">Brief description</label>
-            <textarea id="event-description" class="form-control" rows="3">{{description}}</textarea>
-            <label for="event-link">External link (optional)</label>
-            <input type="text" id="event-link" class="form-control input-md" value={{link}}>
-          </div>
-        </form>
-        </script>
-
-        <!-- Handlebars template for eventUpdateModal-->
-        <script id="event-update-modal" type="text/x-handlebars-template">
-        {{event}}
         <div class="modal fade" id="eventUpdateModal" tabindex="-1" role="dialog" aria-labelledby="eventUpdateModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -83,8 +61,21 @@
                 <h4 class="modal-title" id="eventUpdateModalLabel">Update Event</h4>
               </div>
               <div class="modal-body">
-                <!-- assuming we register our partial as eventForm -->
-                {{> eventForm }}
+                <form class="form col-sm-12 center-block">
+                  <div class="form-group">
+                  To update an event, please correct the following information:<br><br>
+                    <label for="event-date-time">Date and Time</label>
+                    <input type="text" id="event-date-time" class="form-control input-md" >
+                    <label for="event-title">Event title</label>
+                    <input type="text" id="event-title" class="form-control input-md" >
+                    <label for="event-venue">Venue</label>
+                    <input type="text" id="event-venue" class="form-control input-md" value={{venue}}>
+                    <label for="event-description">Brief description</label>
+                    <textarea id="event-description" class="form-control" rows="3">{{description}}</textarea>
+                    <label for="event-link">External link (optional)</label>
+                    <input type="text" id="event-link" class="form-control input-md" value={{link}}>
+                  </div>
+                </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -93,7 +84,6 @@
             </div>
           </div>
         </div>
-        </script>
 
         <!-- Button trigger eventCreateModal -->
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#eventCreateModal">
