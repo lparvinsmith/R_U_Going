@@ -1,8 +1,37 @@
+
+var sa = 'http://localhost:3000';
+
+//when click button 'show-events', show event index
+
+var showEvents = function() {
+  $.ajax(sa + '/events', {
+    contentType: 'application/json',
+    processData: false,
+    dataType: 'json',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + simpleStorage.get("token")
+    }
+  }).done(function(data, textStatus, jqxhr){
+
+      //handlebars templating function
+      var eventIndexTemplateFunction = Handlebars.compile($("#event-index-template").html());
+      //call templating function with object events as parameter
+      var newHTML = eventIndexTemplateFunction({events: data.events});
+
+      //set element event-index to newHTML
+      $("#events").html(newHTML);
+    console.log(JSON.stringify(data));
+  }).fail(function(jqxhr, textStatus, errorThrown){
+    console.log('index failed');
+  });
+};
+
 //shorthand for $document.ready
 $(function(){
   'use strict';
 
-var sa = 'http://localhost:3000';
+
 
 // var MyApi = (function(){
 //   return {
@@ -48,6 +77,9 @@ var sa = 'http://localhost:3000';
 //   };
 // })();
 
+//call showEvents
+showEvents();
+
 //when click button 'register', register user
 //will this automatically add user to users table?
   $('#register').on('click', function(e){
@@ -85,6 +117,7 @@ var sa = 'http://localhost:3000';
       method: 'POST'
     }).done(function(data){
       console.log(data.token)
+      //uses simpleStorage to store token
       simpleStorage.set("token", data.token);
     }).fail(function(e){
       console.log('login failed');
@@ -103,7 +136,7 @@ var sa = 'http://localhost:3000';
           title: $("#event-title").val(),
           venue: $("#event-venue").val(),
           description: $("#event-description").val(),
-          //need to add link column to db
+          link: $("#event-link").val()
         }
       }),
       dataType: 'json',
@@ -118,9 +151,58 @@ var sa = 'http://localhost:3000';
     });
   });
 
-//THESE BUTTONS DON'T EXIST YET
+// //when click button 'show-events', show event index
+
+//   $("#show-events").on('click', function(e) {
+//     $.ajax(sa + '/events', {
+//       contentType: 'application/json',
+//       processData: false,
+//       dataType: 'json',
+//       method: 'GET',
+//       headers: {
+//         Authorization: 'Token token=' + simpleStorage.get("token")
+//       }
+//     }).done(function(data, textStatus, jqxhr){
+
+//         //handlebars templating function
+//         var eventIndexTemplateFunction = Handlebars.compile($("#event-index-template").html());
+//         //call templating function with object events as parameter
+//         var newHTML = eventIndexTemplateFunction({events: data.events});
+
+//         //set element event-index to newHTML
+//         $("#events").html(newHTML);
+//       console.log(JSON.stringify(data));
+//     }).fail(function(jqxhr, textStatus, errorThrown){
+//       console.log('index failed');
+//     });
+//   });
 
 //when click button 'update-event', update new event
+  // $('.update-event').on('click', function(e) {
+  //   var id = $(this).data.("id");
+  //   $.ajax(sa + '/events/' + id, { //how to get id from panel?
+  //     contentType: 'application/json',
+  //     processData: false,
+  //     data: JSON.stringify({
+  //       event: {
+  //         occurs_at: $("#event-date-time").val(),
+  //         title: $("#event-title").val(),
+  //         venue: $("#event-venue").val(),
+  //         description: $("#event-description").val(),
+  //         link: $("#event-link").val()
+  //       }
+  //     }),
+  //     dataType: 'json',
+  //     method: 'PATCH',
+  //     headers: {
+  //       Authorization: 'Token token=' + simpleStorage.get("token")
+  //     }
+  //   }).done(function(data, textStatus, jqxhr){
+  //     console.log(JSON.stringify(data));
+  //   }).fail(function(jqxhr, textStatus, errorThrown){
+  //     console.log('update failed');
+  //   });
+  // });
 
 //when click button 'delete-event', delete event
 

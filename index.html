@@ -32,12 +32,14 @@
         {{#each events}}
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{title}} on {{date}} at {{venue}}</h3>
+            <h3 class="panel-title">{{title}} on {{occurs_at}} at {{venue}}</h3>
           </div>
           <div class="panel-body">
             {{description}} {{link}}<br>
             {{number_going}} going<br>
-            <button class="btn btn-default" id="im-going">Im going!</button>
+            <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
+            <button class="btn btn-default update-event" data-id={{id}}>Edit</button>
+            <button class="btn btn-default delete-event" data-id={{id}}>Delete</button>
           </div>
         </div>
         {{/each}}
@@ -46,9 +48,6 @@
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           Create Event
-        </button>
-        <button id="show-events">
-          Show Events
         </button>
 
         <!-- Modal -->
