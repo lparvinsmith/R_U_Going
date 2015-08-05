@@ -28,7 +28,7 @@
         <ul id="events"></ul>
 
         <!-- Handlebars list of events -->
-        <script id="event-index-template" type="text/x-handlebars-template">
+        <script id="event-template" type="text/x-handlebars-template">
         {{#each events}}
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -38,25 +38,75 @@
             {{description}} {{link}}<br>
             {{number_going}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
-            <button class="btn btn-default update-event" data-id={{id}}>Edit</button>
+
+            <button class="btn btn-default update-event" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
+
             <button class="btn btn-default delete-event" data-id={{id}}>Delete</button>
           </div>
         </div>
         {{/each}}
         </script>
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-          Create Event
-        </button>
+        <!--
+          1. Put modal forms in their own templates
+          2. Write a javascript click handler for the "Update" button. The click handler will get the id and store it in a local variable using $(this).data('id'). Then, it will set a hidden input field on the modal.
+          3. Then your AJAX code can use that hidden input field along with the visible ones to build a JSON payload to send to the server.
+        -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- Handlebars template for eventForm-->
+        <script id="event-form-partial" type="text/x-handlebars-template">
+        <form class="form col-sm-12 center-block">
+          <div class="form-group">
+          To update an event, please correct the following information:<br><br>
+            <label for="event-date-time">Date and Time</label>
+            <input type="text" id="event-date-time" class="form-control input-md" value={{occurs_at}}>
+            <label for="event-title">Event title</label>
+            <input type="text" id="event-title" class="form-control input-md" value={{title}}>
+            <label for="event-venue">Venue</label>
+            <input type="text" id="event-venue" class="form-control input-md" value={{venue}}>
+            <label for="event-description">Brief description</label>
+            <textarea id="event-description" class="form-control" rows="3">{{description}}</textarea>
+            <label for="event-link">External link (optional)</label>
+            <input type="text" id="event-link" class="form-control input-md" value={{link}}>
+          </div>
+        </form>
+        </script>
+
+        <!-- Handlebars template for eventUpdateModal-->
+        <script id="event-update-modal" type="text/x-handlebars-template">
+        {{event}}
+        <div class="modal fade" id="eventUpdateModal" tabindex="-1" role="dialog" aria-labelledby="eventUpdateModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+                <h4 class="modal-title" id="eventUpdateModalLabel">Update Event</h4>
+              </div>
+              <div class="modal-body">
+                <!-- assuming we register our partial as eventForm -->
+                {{> eventForm }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="update-event" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </script>
+
+        <!-- Button trigger eventCreateModal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#eventCreateModal">
+          Create Event
+        </button>
+
+        <!-- eventCreateModal -->
+        <div class="modal fade" id="eventCreateModal" tabindex="-1" role="dialog" aria-labelledby="eventCreateModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="eventCreateModalLabel">Create Event</h4>
               </div>
               <div class="modal-body">
                 <form class="form col-sm-12 center-block">
