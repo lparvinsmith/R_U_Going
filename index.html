@@ -39,7 +39,7 @@
             {{number_going}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
 
-            <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
+            <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
 
             <button class="btn btn-default delete-event" data-id={{id}}>Delete</button>
           </div>
@@ -122,14 +122,8 @@
             </div>
           </div>
         </div>
-
-      <!--   <nav>
-          <ul class="pager">
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
-        </nav> -->
       </div>
+
       <div class="right col-md-2 pull-right">
         <div class="well">U R going to <br><span id="your-events">0</span> events!</div>
       </div>
