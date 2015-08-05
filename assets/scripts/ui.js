@@ -9,6 +9,7 @@ $(document).ready(function(){
     var venue = button.data('venue');
     var description = button.data('description');
     var link = button.data('link');
+    var id = button.data('id');
     // Extract info from data-* attributes
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -18,6 +19,7 @@ $(document).ready(function(){
     modal.find('#event-venue').val(venue);
     modal.find('#event-description').val(description);
     modal.find('#event-link').val(link);
+    modal.find('#update-event').data("id", id);
   });
 
 });
