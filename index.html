@@ -47,12 +47,6 @@
         {{/each}}
         </script>
 
-        <!--
-          1. Put modal forms in their own templates
-          2. Write a javascript click handler for the "Update" button. The click handler will get the id and store it in a local variable using $(this).data('id'). Then, it will set a hidden input field on the modal.
-          3. Then your AJAX code can use that hidden input field along with the visible ones to build a JSON payload to send to the server.
-        -->
-
         <!-- Event update modal-->
         <div class="modal fade" id="eventUpdateModal" tabindex="-1" role="dialog" aria-labelledby="eventUpdateModalLabel">
           <div class="modal-dialog" role="document">
@@ -65,16 +59,16 @@
                 <form class="form col-sm-12 center-block">
                   <div class="form-group">
                   To update an event, please correct the following information:<br><br>
-                    <label for="event-date-time">Date and Time</label>
-                    <input type="text" id="event-date-time" class="form-control input-md">
-                    <label for="event-title">Event title</label>
-                    <input type="text" id="event-title" class="form-control input-md">
-                    <label for="event-venue">Venue</label>
-                    <input type="text" id="event-venue" class="form-control input-md">
-                    <label for="event-description">Brief description</label>
-                    <textarea id="event-description" class="form-control" rows="3"></textarea>
-                    <label for="event-link">External link (optional)</label>
-                    <input type="text" id="event-link" class="form-control input-md">
+                    <label for="update-event-date-time">Date and Time</label>
+                    <input type="text" id="update-event-date-time" class="form-control input-md">
+                    <label for="update-event-title">Event title</label>
+                    <input type="text" id="update-event-title" class="form-control input-md">
+                    <label for="update-event-venue">Venue</label>
+                    <input type="text" id="update-event-venue" class="form-control input-md">
+                    <label for="update-event-description">Brief description</label>
+                    <textarea id="update-event-description" class="form-control" rows="3"></textarea>
+                    <label for="update-event-link">External link (optional)</label>
+                    <input type="text" id="update-event-link" class="form-control input-md">
                   </div>
                 </form>
               </div>
@@ -103,16 +97,16 @@
                 <form class="form col-sm-12 center-block">
                   <div class="form-group">
                   To create an event, please fill in some information:<br><br>
-                    <label for="event-date-time">Date and Time</label>
-                    <input type="text" id="event-date-time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
-                    <label for="event-title">Event title</label>
-                    <input type="text" id="event-title" class="form-control input-md">
-                    <label for="event-venue">Venue</label>
-                    <input type="text" id="event-venue" class="form-control input-md">
-                    <label for="event-description">Brief description</label>
-                    <textarea id="event-description" class="form-control" rows="3"></textarea>
-                    <label for="event-link">External link (optional)</label>
-                    <input type="text" id="event-link" class="form-control input-md">
+                    <label for="create-event-date-time">Date and Time</label>
+                    <input type="text" id="create-event-date-time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
+                    <label for="create-event-title">Event title</label>
+                    <input type="text" id="create-event-title" class="form-control input-md">
+                    <label for="create-event-venue">Venue</label>
+                    <input type="text" id="create-event-venue" class="form-control input-md">
+                    <label for="create-event-description">Brief description</label>
+                    <textarea id="create-event-description" class="form-control" rows="3"></textarea>
+                    <label for="create-event-link">External link (optional)</label>
+                    <input type="text" id="create-event-link" class="form-control input-md">
                   </div>
                 </form>
               </div>

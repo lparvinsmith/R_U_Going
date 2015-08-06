@@ -137,16 +137,17 @@ $(function(){
   //when click button 'create-event', create new event
   //user who creates event is recorded as "going"?
   $('#create-event').on('click', function(e) {
+    debugger
     $.ajax(sa + '/events', {
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({
         event: {
-          occurs_at: $("#event-date-time").val(),
-          title: $("#event-title").val(),
-          venue: $("#event-venue").val(),
-          description: $("#event-description").val(),
-          link: $("#event-link").val()
+          occurs_at: $("#create-event-date-time").val(),
+          title: $("#create-event-title").val(),
+          venue: $("#create-event-venue").val(),
+          description: $("#create-event-description").val(),
+          link: $("#create-event-link").val()
         }
       }),
       dataType: 'json',
@@ -170,11 +171,11 @@ $(function(){
       processData: false,
       data: JSON.stringify({
         event: {
-          occurs_at: $("#event-date-time").val(),
-          title: $("#event-title").val(),
-          venue: $("#event-venue").val(),
-          description: $("#event-description").val(),
-          link: $("#event-link").val()
+          occurs_at: $("#update-event-date-time").val(),
+          title: $("#update-event-title").val(),
+          venue: $("#update-event-venue").val(),
+          description: $("#update-event-description").val(),
+          link: $("#update-event-link").val()
         }
       }),
       dataType: 'json',
@@ -185,13 +186,14 @@ $(function(){
     }).done(function(data, textStatus, jqxhr){
       console.log(JSON.stringify(data));
       //NEED to update elements of DOM to reflect changes
+      //use jQuery to take event with this ID out of the DOM
       //and close modal
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('update failed');
     });
   });
 
-  //DOESNT HIT
+
   //when click button 'event-destroy', delete event FIXME
   $("#events").on('click', '.event-destroy', function(){
     var id = $(this).data('id');
@@ -209,7 +211,7 @@ $(function(){
     });
   });
 
-  //DOESNT HIT
+
   //when click button 'im-going!', create confirmation
   $('#events').on('click', '.im-going', function(e) {
     var id = $(this).data('id');

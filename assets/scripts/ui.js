@@ -14,13 +14,14 @@ $(document).ready(function(){
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this);
-    modal.find('#event-date-time').val(occurs);
-    modal.find('#event-title').val(title);
-    modal.find('#event-venue').val(venue);
-    modal.find('#event-description').val(description);
-    modal.find('#event-link').val(link);
+    modal.find('#update-event-date-time').val(occurs);
+    modal.find('#update-event-title').val(title);
+    modal.find('#update-event-venue').val(venue);
+    modal.find('#update-event-description').val(description);
+    modal.find('#update-event-link').val(link);
     modal.find('#update-event').data("id", id);
   });
+
 
 });
 
