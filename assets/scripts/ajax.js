@@ -12,6 +12,7 @@ var showEvents = function() {
       Authorization: 'Token token=' + simpleStorage.get("token")
     }
   }).done(function(data, textStatus, jqxhr){
+    console.log(data);
       //sort by date from earliest to latest
       data.events.sort(function(first, second) {
         var firstEpoch = (new Date(first.occurs_at)).getTime(),
@@ -137,7 +138,6 @@ $(function(){
   //when click button 'create-event', create new event
   //user who creates event is recorded as "going"?
   $('#create-event').on('click', function(e) {
-    debugger
     $.ajax(sa + '/events', {
       contentType: 'application/json',
       processData: false,
@@ -232,8 +232,15 @@ $(function(){
       console.log(JSON.stringify(data));
       //use serializer so you can see how many are going on each panel
       //create method confirmation_count = objects.confirmations.length
+
+      // re-fetches the events (and re-renders?) to get new confirmation count
+      showEvents();
+
+      // disable "I'm going" or switch it to "I'm not going"
     }).fail(function(jqxhr, textStatus, errorThrown){
-      console.log('confirmation failed');
+      console.log('confirmation failed', jqxhr.responseText);
+
+      // if for some reason the button fails to change or the user double-clicks the button, handle the validation error by displaying an error message to the user (not through the console)
     });
   });
 

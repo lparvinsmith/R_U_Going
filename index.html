@@ -35,8 +35,9 @@
             <h3 class="panel-title">{{title}} on {{occurs_at}} at {{venue}}</h3>
           </div>
           <div class="panel-body">
-            {{description}} {{link}}<br>
-            {{number_going}} going<br>
+            {{description}}<br>
+            <a href="{{link}}">External link</a><br>
+            {{confirmation_count}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
 
             <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
