@@ -164,7 +164,7 @@ $(function(){
   //when click button 'update-event', update new event
   $('#update-event').on('click', function(e) {
     var id = $(this).data('id');
-    console.log(id);
+    // console.log(id);
     $.ajax(sa + '/events/' + id, {
       contentType: 'application/json',
       processData: false,
@@ -184,16 +184,55 @@ $(function(){
       }
     }).done(function(data, textStatus, jqxhr){
       console.log(JSON.stringify(data));
-      //update elements of DOM to reflect changes
+      //NEED to update elements of DOM to reflect changes
       //and close modal
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('update failed');
     });
   });
 
-  //when click button 'delete-event', delete event
+  //DOESNT HIT
+  //when click button 'event-destroy', delete event FIXME
+  $("#events").on('click', '.event-destroy', function(){
+    var id = $(this).data('id');
+    $.ajax(sa + '/events/' + id, {
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + simpleStorage.get("token")
+      }
+    }).done(function(data){
+      console.log("Deleted event!");
+      //NEED to update page to reflect changes
+      //use jQuery to take event with this ID out of the DOM
+    }).fail(function(data){
+      console.error(data);
+    });
+  });
 
+  //DOESNT HIT
   //when click button 'im-going!', create confirmation
-
+  $('#events').on('click', '.im-going', function(e) {
+    var id = $(this).data('id');
+    $.ajax(sa + '/confirmations', {
+      contentType: 'application/json',
+      processData: false,
+      data: JSON.stringify({
+        confirmation: {
+          event_id: id
+        }
+      }),
+      dataType: 'json',
+      method: 'POST',
+      headers: {
+        Authorization: 'Token token=' + simpleStorage.get("token")
+      }
+    }).done(function(data, textStatus, jqxhr){
+      console.log(JSON.stringify(data));
+      //use serializer so you can see how many are going on each panel
+      //create method confirmation_count = objects.confirmations.length
+    }).fail(function(jqxhr, textStatus, errorThrown){
+      console.log('confirmation failed');
+    });
+  });
 
 });

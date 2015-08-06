@@ -41,7 +41,7 @@
 
             <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
 
-            <button class="btn btn-default delete-event" data-id={{id}}>Delete</button>
+            <button class="btn btn-default event-destroy" data-id={{id}}>Delete</button>
           </div>
         </div>
         {{/each}}
@@ -66,15 +66,15 @@
                   <div class="form-group">
                   To update an event, please correct the following information:<br><br>
                     <label for="event-date-time">Date and Time</label>
-                    <input type="text" id="event-date-time" class="form-control input-md" >
+                    <input type="text" id="event-date-time" class="form-control input-md">
                     <label for="event-title">Event title</label>
-                    <input type="text" id="event-title" class="form-control input-md" >
+                    <input type="text" id="event-title" class="form-control input-md">
                     <label for="event-venue">Venue</label>
-                    <input type="text" id="event-venue" class="form-control input-md" value={{venue}}>
+                    <input type="text" id="event-venue" class="form-control input-md">
                     <label for="event-description">Brief description</label>
-                    <textarea id="event-description" class="form-control" rows="3">{{description}}</textarea>
+                    <textarea id="event-description" class="form-control" rows="3"></textarea>
                     <label for="event-link">External link (optional)</label>
-                    <input type="text" id="event-link" class="form-control input-md" value={{link}}>
+                    <input type="text" id="event-link" class="form-control input-md">
                   </div>
                 </form>
               </div>
