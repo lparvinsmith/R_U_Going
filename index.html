@@ -32,11 +32,11 @@
         {{#each events}}
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{title}} on {{occurs_at}} at {{venue}}</h3>
+            <h3 class="panel-title">{{formatDate occurs_at}}<br>{{title}} at {{venue}}</h3>
           </div>
           <div class="panel-body">
             {{description}}<br>
-            <a href="{{link}}">External link</a><br>
+            <a href="{{link}}">Click here for more information</a><br>
             {{confirmation_count}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
 
@@ -130,6 +130,7 @@
 
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/moment/moment.js"></script>
     <script src="assets/scripts/handlebars-v3.0.3.js" type="text/javascript"></script>
     <script src="assets/scripts/simpleStorage.js" type="text/javascript"></script>
     <script src="assets/scripts/main.js" type="text/javascript"></script>

@@ -26,6 +26,19 @@ var showEvents = function() {
           return 0;
         }
       });
+
+      //HANDLEBARS
+      //helper for formatting date
+      Handlebars.registerHelper('formatDate', function (text){
+        if (moment) {
+          return moment(text).format('dddd, MMMM Do YYYY, h:mm a');
+        }
+        else {
+          return text;
+        }
+
+      });
+
       //handlebars templating function
       var eventIndexTemplateFunction = Handlebars.compile($("#event-template").html());
       //call templating function with object events as parameter
