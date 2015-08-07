@@ -1,5 +1,6 @@
 
-var sa = 'http://localhost:3000';
+// var sa = 'http://localhost:3000';
+var sa = "https://desolate-shelf-8612.herokuapp.com";
 
 //define function showEvents, to be called on document.ready.
 var showEvents = function() {

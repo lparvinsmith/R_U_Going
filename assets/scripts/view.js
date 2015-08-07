@@ -16,8 +16,7 @@ var View = (function(){
   }
 })();
 
-var eventFormTemplate = Handlebars.compile($("#event-form-partial").html());
-Handlebars.registerPartial('eventForm', eventFormTemplate);
+
 
 
 
