@@ -52,6 +52,24 @@ var showEvents = function() {
   });
 };
 
+//count user's events (thru confirmations) to be displayed via index.html
+var yourEventCount = function(){
+  $.ajax(sa + '/events/count', {
+    contentType: 'application/json',
+    processData: false,
+    dataType: 'json',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + simpleStorage.get("token")
+    }
+  }).done(function(data, textStatus, jqxhr){
+    console.log(data);
+    $("#your-events").html(data);
+  }).fail(function(jqxhr, textStatus, errorThrown){
+    console.log('your event count failed');
+  });
+};
+
 //shorthand for $document.ready
 $(function(){
   'use strict';
@@ -104,6 +122,7 @@ $(function(){
 
   //invoke showEvents
   showEvents();
+  yourEventCount();
 
   //when click button 'register', register user
   $('#register').on('click', function(e){
@@ -248,6 +267,7 @@ $(function(){
 
       // re-fetches the events (and re-renders?) to get new confirmation count
       showEvents();
+      yourEventCount();
 
       // disable "I'm going" or switch it to "I'm not going"
     }).fail(function(jqxhr, textStatus, errorThrown){
