@@ -36,6 +36,8 @@ node_modules/*
 ## Add back Bootstrap
 !node_modules/bootstrap
 !node_modules/jquery
+!node_modules/moment
+!node_modules/moment-timezone
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
