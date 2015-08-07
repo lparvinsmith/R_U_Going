@@ -31,7 +31,8 @@ var showEvents = function() {
       //helper for formatting date
       Handlebars.registerHelper('formatDate', function (text){
         if (moment) {
-          return moment(text).format('dddd, MMMM Do YYYY, h:mm a');
+          debugger;
+          return moment(text).tz('Iceland').format('dddd, MMMM Do YYYY, h:mm a');
         }
         else {
           return text;

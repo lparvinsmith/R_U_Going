@@ -9,7 +9,8 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "jquery": "^2.1.4",
-    "moment": "^2.10.6"
+    "moment": "^2.10.6",
+    "moment-timezone": "^0.4.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
