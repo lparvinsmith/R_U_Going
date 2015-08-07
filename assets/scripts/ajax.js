@@ -142,6 +142,7 @@ $(function(){
       $("#authentication-success").html("Registration successful! Please log in.");
       console.log(JSON.stringify(data));
     }).fail(function(jqxhr, textStatus, errorThrown){
+      $("#authentication-success").html("Registration failed! Please try again.");
       console.log('registration failed');
     })
   });
@@ -165,6 +166,7 @@ $(function(){
       simpleStorage.set("token", data.token);
       $("#authentication-success").html("Login successful.");
     }).fail(function(e){
+      $("#authentication-success").html("Login failed! Please try again.");
       console.log('login failed');
     });
   });
@@ -191,6 +193,7 @@ $(function(){
       }
     }).done(function(data, textStatus, jqxhr){
       console.log(JSON.stringify(data));
+      // showEvents(); //why doesn't this work??
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('create failed');
     });
