@@ -34,6 +34,10 @@ body {
   margin-top: 100px;
 }
 
+#authentication-success {
+  background-color: rgba(184, 174, 156, 0.9);
+}
+
 .right {
   background-color: rgba(172, 207, 204, 0.6);
   height: 800px;

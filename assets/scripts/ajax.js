@@ -31,7 +31,6 @@ var showEvents = function() {
       //helper for formatting date
       Handlebars.registerHelper('formatDate', function (text){
         if (moment) {
-          debugger;
           return moment(text).tz('Iceland').format('dddd, MMMM Do YYYY, h:mm a');
         }
         else {
@@ -140,6 +139,7 @@ $(function(){
       dataType: 'json',
       method: 'POST'
     }).done(function(data,textStatus,jqxhr){
+      $("#authentication-success").html("Registration successful! Please log in.");
       console.log(JSON.stringify(data));
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('registration failed');
@@ -163,6 +163,7 @@ $(function(){
       console.log(data.token)
       //uses simpleStorage to store token
       simpleStorage.set("token", data.token);
+      $("#authentication-success").html("Login successful.");
     }).fail(function(e){
       console.log('login failed');
     });
@@ -227,7 +228,7 @@ $(function(){
   });
 
 
-  //when click button 'event-destroy', delete event FIXME
+  //when click button 'event-destroy', delete event
   $("#events").on('click', '.event-destroy', function(){
     var id = $(this).data('id');
     $.ajax(sa + '/events/' + id, {
