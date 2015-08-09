@@ -26,7 +26,7 @@
 
       <div class="content col-md-6 col-md-offset-1">
 
-        <ul id="events"></ul>
+        <ul id="events">PLEASE LOGIN TO SEE ALL EVENTS</ul>
 
         <!-- Handlebars list of events -->
         <script id="event-template" type="text/x-handlebars-template">
@@ -37,7 +37,9 @@
           </div>
           <div class="panel-body">
             {{description}}<br>
+            {{#if link}}
             <a href="{{link}}">Click here for more information</a><br>
+            {{/if}}
             {{confirmation_count}} going<br>
             <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
 
