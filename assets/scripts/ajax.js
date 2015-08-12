@@ -1,6 +1,6 @@
 
-// var sa = 'http://localhost:3000';
-var sa = "https://desolate-shelf-8612.herokuapp.com";
+var sa = 'http://localhost:3000';
+// var sa = "https://desolate-shelf-8612.herokuapp.com";
 
 //define function showEvents, to be called on document.ready.
 var showEvents = function() {
@@ -46,6 +46,7 @@ var showEvents = function() {
       var newHTML = eventIndexTemplateFunction({events: data.events});
       //set element event-index to newHTML
       $("#events").html(newHTML);
+      $('[data-toggle="popover"]').popover();
 
     console.log(JSON.stringify(data));
   }).fail(function(jqxhr, textStatus, errorThrown){
