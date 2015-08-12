@@ -22,6 +22,10 @@ $(document).ready(function(){
     modal.find('#update-event').data("id", id);
   });
 
+  $("#logout").on('click', function(){
+    simpleStorage.flush();
+    $("#authentication-success").html("You have logged out.");
+  });
 
 });
 
