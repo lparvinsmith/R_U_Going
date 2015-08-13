@@ -11,122 +11,123 @@
       <h4>Let's get to know the Boston tech community together</h4>
     </nav>
     <div class="main container-fluid">
+      <div class="row">
+        <div class="left col-md-2 pull-left">
 
-      <div class="left col-md-2 pull-left">
-
-        <!-- Authentication buttons -->
-        <div class="authentication">
-          <input type="text" id="email" class="form-control" placeholder="Username"><br>
-          <input type="password" id="password" class="form-control" placeholder="Password"><br>
-          <p><span id="authentication-success"></span><p>
-          <button class="btn btn-default" id="register">Register</button>
-          <button class="btn btn-default" id="login">Login</button><br>
-          <button class="btn btn-default" id="logout">Logout</button>
-        </div>
-      </div>
-
-      <div class="content col-md-6 col-md-offset-1">
-
-        <ul id="events">PLEASE LOGIN TO SEE ALL EVENTS</ul>
-
-        <!-- Handlebars list of events -->
-        <script id="event-template" type="text/x-handlebars-template">
-        {{#each events}}
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{formatDate occurs_at}}<br>{{title}} at {{venue}}</h3>
-          </div>
-          <div class="panel-body">
-            {{description}}<br>
-            {{#if link}}
-            <a href="{{link}}">Click here for more information</a><br>
-            {{/if}}
-            {{confirmation_count}} going<br>
-            <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
-            <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
-
-            <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
-
-            <button class="btn btn-default event-destroy" data-id={{id}}>Delete</button>
+          <!-- Authentication buttons -->
+          <div class="authentication">
+            <input type="text" id="email" class="form-control" placeholder="Username"><br>
+            <input type="password" id="password" class="form-control" placeholder="Password"><br>
+            <p><span id="authentication-success"></span><p>
+            <button class="btn btn-default" id="register">Register</button>
+            <button class="btn btn-default" id="login">Login</button><br>
+            <button class="btn btn-default" id="logout">Logout</button>
           </div>
         </div>
-        {{/each}}
-        </script>
 
-        <!-- Event update modal-->
-        <div class="modal fade" id="eventUpdateModal" tabindex="-1" role="dialog" aria-labelledby="eventUpdateModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="eventUpdateModalLabel">Update Event</h4>
+        <div class="content col-md-8">
+
+          <div id="events">PLEASE LOGIN TO SEE ALL EVENTS</div>
+
+          <!-- Handlebars list of events -->
+          <script id="event-template" type="text/x-handlebars-template">
+          {{#each events}}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{formatDate occurs_at}}<br>{{title}} at {{venue}}</h3>
+            </div>
+            <div class="panel-body">
+              {{description}}<br>
+              {{#if link}}
+              <a href="{{link}}">Click here for more information</a><br>
+              {{/if}}
+              {{confirmation_count}} going<br>
+              <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
+              <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
+
+              <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
+
+              <button class="btn btn-default event-destroy" data-id={{id}}>Delete</button>
+            </div>
+          </div>
+          {{/each}}
+          </script>
+
+          <!-- Event update modal-->
+          <div class="modal fade" id="eventUpdateModal" tabindex="-1" role="dialog" aria-labelledby="eventUpdateModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="eventUpdateModalLabel">Update Event</h4>
+                </div>
+                <div class="modal-body">
+                  <form class="form col-sm-12 center-block">
+                    <div class="form-group">
+                    To update an event, please correct the following information:<br><br>
+                      <label for="update-event-date-time">Date and Time</label>
+                      <input type="text" id="update-event-date-time" class="form-control input-md">
+                      <label for="update-event-title">Event title</label>
+                      <input type="text" id="update-event-title" class="form-control input-md">
+                      <label for="update-event-venue">Venue</label>
+                      <input type="text" id="update-event-venue" class="form-control input-md">
+                      <label for="update-event-description">Brief description</label>
+                      <textarea id="update-event-description" class="form-control" rows="3"></textarea>
+                      <label for="update-event-link">External link (optional)</label>
+                      <input type="text" id="update-event-link" class="form-control input-md">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" id="update-event" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
               </div>
-              <div class="modal-body">
-                <form class="form col-sm-12 center-block">
-                  <div class="form-group">
-                  To update an event, please correct the following information:<br><br>
-                    <label for="update-event-date-time">Date and Time</label>
-                    <input type="text" id="update-event-date-time" class="form-control input-md">
-                    <label for="update-event-title">Event title</label>
-                    <input type="text" id="update-event-title" class="form-control input-md">
-                    <label for="update-event-venue">Venue</label>
-                    <input type="text" id="update-event-venue" class="form-control input-md">
-                    <label for="update-event-description">Brief description</label>
-                    <textarea id="update-event-description" class="form-control" rows="3"></textarea>
-                    <label for="update-event-link">External link (optional)</label>
-                    <input type="text" id="update-event-link" class="form-control input-md">
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="update-event" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+          </div>
+
+          <!-- Button trigger eventCreateModal -->
+          <button type="button" class="btn btn-primary btn-lg center-block" id="create-button" data-toggle="modal" data-target="#eventCreateModal">
+            Create Event
+          </button>
+
+          <!-- eventCreateModal -->
+          <div class="modal fade" id="eventCreateModal" tabindex="-1" role="dialog" aria-labelledby="eventCreateModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="eventCreateModalLabel">Create Event</h4>
+                </div>
+                <div class="modal-body">
+                  <form class="form col-sm-12 center-block">
+                    <div class="form-group">
+                    To create an event, please fill in some information:<br><br>
+                      <label for="create-event-date-time">Date and Time</label>
+                      <input type="text" id="create-event-date-time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
+                      <label for="create-event-title">Event title</label>
+                      <input type="text" id="create-event-title" class="form-control input-md">
+                      <label for="create-event-venue">Venue</label>
+                      <input type="text" id="create-event-venue" class="form-control input-md">
+                      <label for="create-event-description">Brief description</label>
+                      <textarea id="create-event-description" class="form-control" rows="3"></textarea>
+                      <label for="create-event-link">External link (optional)</label>
+                      <input type="text" id="create-event-link" class="form-control input-md">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" id="create-event" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Button trigger eventCreateModal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#eventCreateModal">
-          Create Event
-        </button>
-
-        <!-- eventCreateModal -->
-        <div class="modal fade" id="eventCreateModal" tabindex="-1" role="dialog" aria-labelledby="eventCreateModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="eventCreateModalLabel">Create Event</h4>
-              </div>
-              <div class="modal-body">
-                <form class="form col-sm-12 center-block">
-                  <div class="form-group">
-                  To create an event, please fill in some information:<br><br>
-                    <label for="create-event-date-time">Date and Time</label>
-                    <input type="text" id="create-event-date-time" class="form-control input-md" placeholder="YYYY-MM-DD HH:MM">
-                    <label for="create-event-title">Event title</label>
-                    <input type="text" id="create-event-title" class="form-control input-md">
-                    <label for="create-event-venue">Venue</label>
-                    <input type="text" id="create-event-venue" class="form-control input-md">
-                    <label for="create-event-description">Brief description</label>
-                    <textarea id="create-event-description" class="form-control" rows="3"></textarea>
-                    <label for="create-event-link">External link (optional)</label>
-                    <input type="text" id="create-event-link" class="form-control input-md">
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="create-event" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-              </div>
-            </div>
-          </div>
+        <div class="right col-md-2 pull-right">
+          <div class="well">U R going to <br><span id="your-events">0</span> events!</div>
         </div>
-      </div>
-
-      <div class="right col-md-2 pull-right">
-        <div class="well">U R going to <br><span id="your-events">0</span> events!</div>
       </div>
     </div>
     <footer class="footer">

@@ -1,5 +1,5 @@
 body {
-  background-image: url(http://i.imgur.com/7kvpdGC.jpg);
+  background-image: url('../brick.jpg');
   background-size:cover;
 }
 
@@ -14,7 +14,11 @@ body {
 .content {
   background-color: rgba(255, 255, 255, 0.4);
   height: 800px;
+  overflow: auto;
+}
 
+#events {
+  margin: 0 120px;
 }
 
 .panel {
