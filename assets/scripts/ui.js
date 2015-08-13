@@ -2,6 +2,30 @@
 
 $(document).ready(function(){
 
+  //AUTHENTICATION
+  //on when click button register, registers user
+  $('#register').on('click', function(e){
+    MyApi.register();
+  });
+
+  //when click button 'login', login user
+  $('#login').on('click', function(e){
+    MyApi.login();
+  });
+
+  //click logout button flushes token from simpleStorage
+  $("#logout").on('click', function(){
+    simpleStorage.flush();
+    location.reload();
+    $("#authentication-success").html("You have logged out.");
+  });
+
+  //CREATE EVENT
+  //when click button 'create-event', create new event
+
+  //UPDATE EVENT
+  //when click button 'update-event', update new event
+
   //uses data from event --via update button-- to populate event update modal
   $('#eventUpdateModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
@@ -21,14 +45,16 @@ $(document).ready(function(){
     modal.find('#update-event').data("id", id);
   });
 
-  //click logout button flushes token from simpleStorage
-  $("#logout").on('click', function(){
-    simpleStorage.flush();
-    location.reload();
-    $("#authentication-success").html("You have logged out.");
-  });
+  //DELETE EVENT
+  //when click button 'event-destroy', delete event
 
-  //initializes popovers
+  //CREATE CONFIRMATION
+  //when click button 'im-going!', create confirmation
+
+  //need to change button to 'not-going'
+
+  //DELETE CONFIRMATION
+  //when click button 'not-going', delete confirmation
 
 });
 

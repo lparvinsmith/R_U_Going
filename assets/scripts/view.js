@@ -1,24 +1,20 @@
 var View = (function(){
+  ////////// HANDLEBARS //////////////
+  //// Custom View Helper
+  Handlebars.registerHelper('formatDate', function (text){
+    if (moment) {
+      return moment(text).tz('Iceland').format('dddd, MMMM Do YYYY, h:mm a');
+    }
+    else {
+      return text;
+    }
+  });
 
-  // //handlebars templating function
-  // var eventIndexTemplateFunction = Handlebars.compile($("#event-index-template").html());
-
+  //// Top-Level Handlebars Template
+  var _eventIndex = Handlebars.compile($("#event-template").html());
 
 
   return {
-    // showEvents : function(){
-    //   //call templating function with object events as parameter
-    //   var newHTML = eventIndexTemplateFunction({events: data}); //how do I make this the event data from db??
-
-    //   //set element event-index to newHTML
-    //   $("#events").html(newHTML);
-    // }
+    eventIndexHTML : _eventIndex
   }
 })();
-
-
-
-
-
-
-

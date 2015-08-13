@@ -28,24 +28,7 @@ var showEvents = function() {
         }
       });
 
-      //HANDLEBARS
-      //helper for formatting date
-      Handlebars.registerHelper('formatDate', function (text){
-        if (moment) {
-          return moment(text).tz('Iceland').format('dddd, MMMM Do YYYY, h:mm a');
-        }
-        else {
-          return text;
-        }
-
-      });
-
-      //handlebars templating function
-      var eventIndexTemplateFunction = Handlebars.compile($("#event-template").html());
-      //call templating function with object events as parameter
-      var newHTML = eventIndexTemplateFunction({events: data.events});
-      //set element event-index to newHTML
-      $("#events").html(newHTML);
+      $("#events").html(View.eventIndexHTML({events: data.events}));
       $('[data-toggle="popover"]').popover();
 
     console.log(JSON.stringify(data));
@@ -72,110 +55,66 @@ var yourEventCount = function(){
   });
 };
 
+var MyApi = (function(){
+  return {
+    register: function(){
+      $.ajax(sa + '/register', {
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+          credentials: {
+            email: $('#email').val(),
+            password: $('#password').val(),
+            // password_confirmation: $('#password').val()
+          }
+        }),
+        dataType: 'json',
+        method: 'POST'
+      }).done(function(data,textStatus,jqxhr){
+        $("#authentication-success").html("Registration successful! Please log in.");
+        console.log(JSON.stringify(data));
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        $("#authentication-success").html("Registration failed! Please try again.");
+        console.log('registration failed');
+      })
+    },
+    login: function(){
+      $.ajax(sa + '/login', {
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+          credentials: {
+            email: $("#email").val(),
+            password: $("#password").val()
+          }
+        }),
+        dataType: 'json',
+        method: 'POST'
+      }).done(function(data){
+        console.log(data.token)
+        //uses simpleStorage to store token
+        simpleStorage.set("token", data.token);
+        location.reload();
+        $("#authentication-success").html("Login successful.");
+      }).fail(function(e){
+        $("#authentication-success").html("Login failed! Please try again.");
+        console.log('login failed');
+      });
+    }
+    // createEvent: function(){}
+  };
+})();
+
 //shorthand for $document.ready
 $(function(){
   'use strict';
-
-
-
-// var MyApi = (function(){
-//   return {
-//     register: function(){
-//       $.ajax(sa + '/register', {
-//         contentType: 'application/json',
-//         processData: false,
-//         data: JSON.stringify({
-//           credentials: {
-//             email: $('#email').val(),
-//             password: $('#password').val(),
-//             // password_confirmation: $('#password').val()
-//           }
-//         }),
-//         dataType: 'json',
-//         method: 'POST'
-//         //see api.jquery documentation online for meanings of all of these
-//       }).done(function(data,textStatus,jqxhr){
-//         console.log(JSON.stringify(data));
-//       }).fail(function(jqxhr, textStatus, errorThrown){
-//         console.log('registration failed');
-//       })
-//     },
-//     login: function(){
-//       $.ajax(sa + '/login', {
-//         contentType: 'application/json',
-//         processData: false,
-//         data: JSON.stringify({
-//           credentials: {
-//             email: $("#email").val(),
-//             password: $("#password").val()
-//           }
-//         }),
-//         dataType: 'json',
-//         method: 'POST'
-//       }).done(function(data){
-//         console.log(data.token);
-//       }).fail(function(e){
-//         console.log('login failed');
-//       });
-//     },
-//     createEvent: function(){}
-//   };
-// })();
 
   //invoke showEvents
   showEvents();
   yourEventCount();
 
-  //when click button 'register', register user
-  $('#register').on('click', function(e){
-    $.ajax(sa + '/register', {
-      contentType: 'application/json',
-      processData: false,
-      data: JSON.stringify({
-        credentials: {
-          email: $('#email').val(),
-          password: $('#password').val(),
-          // password_confirmation: $('#password').val()
-        }
-      }),
-      dataType: 'json',
-      method: 'POST'
-    }).done(function(data,textStatus,jqxhr){
-      $("#authentication-success").html("Registration successful! Please log in.");
-      console.log(JSON.stringify(data));
-    }).fail(function(jqxhr, textStatus, errorThrown){
-      $("#authentication-success").html("Registration failed! Please try again.");
-      console.log('registration failed');
-    })
-  });
-
-  //when click button 'login', login user
-  $('#login').on('click', function(e){
-    $.ajax(sa + '/login', {
-      contentType: 'application/json',
-      processData: false,
-      data: JSON.stringify({
-        credentials: {
-          email: $("#email").val(),
-          password: $("#password").val()
-        }
-      }),
-      dataType: 'json',
-      method: 'POST'
-    }).done(function(data){
-      console.log(data.token)
-      //uses simpleStorage to store token
-      simpleStorage.set("token", data.token);
-      location.reload();
-      $("#authentication-success").html("Login successful.");
-    }).fail(function(e){
-      $("#authentication-success").html("Login failed! Please try again.");
-      console.log('login failed');
-    });
-  });
 
   //when click button 'create-event', create new event
-  //user who creates event is recorded as "going"?
   $('#create-event').on('click', function(e) {
     $.ajax(sa + '/events', {
       contentType: 'application/json',
