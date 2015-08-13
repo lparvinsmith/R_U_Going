@@ -43,7 +43,7 @@
               {{/if}}
               {{confirmation_count}} going<br>
               <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
-              <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
+              <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going:" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
 
               <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
 
