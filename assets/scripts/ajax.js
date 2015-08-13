@@ -166,6 +166,7 @@ $(function(){
       console.log(data.token)
       //uses simpleStorage to store token
       simpleStorage.set("token", data.token);
+      location.reload();
       $("#authentication-success").html("Login successful.");
     }).fail(function(e){
       $("#authentication-success").html("Login failed! Please try again.");
@@ -195,7 +196,7 @@ $(function(){
       }
     }).done(function(data, textStatus, jqxhr){
       console.log(JSON.stringify(data));
-      // showEvents(); //why doesn't this work??
+      location.reload();
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('create failed');
     });
@@ -224,9 +225,7 @@ $(function(){
       }
     }).done(function(data, textStatus, jqxhr){
       console.log(JSON.stringify(data));
-      //NEED to update elements of DOM to reflect changes
-      //use jQuery to take event with this ID out of the DOM
-      //and close modal
+      location.reload();
     }).fail(function(jqxhr, textStatus, errorThrown){
       console.log('update failed');
     });
@@ -243,8 +242,7 @@ $(function(){
       }
     }).done(function(data){
       console.log("Deleted event!");
-      //NEED to update page to reflect changes
-      //use jQuery to take event with this ID out of the DOM
+      location.reload();
     }).fail(function(data){
       console.error(data);
     });

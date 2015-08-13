@@ -24,6 +24,7 @@ $(document).ready(function(){
   //click logout button flushes token from simpleStorage
   $("#logout").on('click', function(){
     simpleStorage.flush();
+    location.reload();
     $("#authentication-success").html("You have logged out.");
   });
 
