@@ -2,58 +2,6 @@
 // var sa = 'http://localhost:3000';
 var sa = "https://desolate-shelf-8612.herokuapp.com";
 
-//define function showEvents, to be called on document.ready.
-var showEvents = function() {
-  $.ajax(sa + '/events', {
-    contentType: 'application/json',
-    processData: false,
-    dataType: 'json',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + simpleStorage.get("token")
-    }
-  }).done(function(data, textStatus, jqxhr){
-    console.log(data);
-      //sort by date from earliest to latest
-      data.events.sort(function(first, second) {
-        var firstEpoch = (new Date(first.occurs_at)).getTime(),
-          secondEpoch = (new Date(second.occurs_at)).getTime();
-
-        if(firstEpoch < secondEpoch) {
-          return -1;
-        } else if(firstEpoch > secondEpoch) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-
-      $("#events").html(View.eventIndexHTML({events: data.events}));
-      $('[data-toggle="popover"]').popover();
-
-    console.log(JSON.stringify(data));
-  }).fail(function(jqxhr, textStatus, errorThrown){
-    console.log('index failed');
-  });
-};
-
-//count user's events (thru confirmations) to be displayed via index.html
-var yourEventCount = function(){
-  $.ajax(sa + '/events/count', {
-    contentType: 'application/json',
-    processData: false,
-    dataType: 'json',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + simpleStorage.get("token")
-    }
-  }).done(function(data, textStatus, jqxhr){
-    console.log(data);
-    $("#your-events").html(data);
-  }).fail(function(jqxhr, textStatus, errorThrown){
-    console.log('your event count failed');
-  });
-};
 
 var MyApi = (function(){
   return {
@@ -125,6 +73,55 @@ var MyApi = (function(){
       }).fail(function(jqxhr, textStatus, errorThrown){
         console.log('create failed');
       });
+    },
+    showEvents: function(){
+      $.ajax(sa + '/events', {
+        contentType: 'application/json',
+        processData: false,
+        dataType: 'json',
+        method: 'GET',
+        headers: {
+          Authorization: 'Token token=' + simpleStorage.get("token")
+        }
+      }).done(function(data, textStatus, jqxhr){
+        console.log(data);
+          //sort by date from earliest to latest
+          data.events.sort(function(first, second) {
+            var firstEpoch = (new Date(first.occurs_at)).getTime(),
+              secondEpoch = (new Date(second.occurs_at)).getTime();
+
+            if(firstEpoch < secondEpoch) {
+              return -1;
+            } else if(firstEpoch > secondEpoch) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+
+          $("#events").html(View.eventIndexHTML({events: data.events}));
+          $('[data-toggle="popover"]').popover();
+
+        console.log(JSON.stringify(data));
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        console.log('index failed');
+      });
+    },
+    yourEventCount: function(){
+      $.ajax(sa + '/events/count', {
+        contentType: 'application/json',
+        processData: false,
+        dataType: 'json',
+        method: 'GET',
+        headers: {
+          Authorization: 'Token token=' + simpleStorage.get("token")
+        }
+      }).done(function(data, textStatus, jqxhr){
+        console.log(data);
+        $("#your-events").html(data);
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        console.log('your event count failed');
+      });
     }
   };
 })();
@@ -132,10 +129,6 @@ var MyApi = (function(){
 //shorthand for $document.ready
 $(function(){
   'use strict';
-
-  //invoke showEvents
-  showEvents();
-  yourEventCount();
 
 
   //when click button 'update-event', update new event
@@ -207,8 +200,7 @@ $(function(){
       //create method confirmation_count = objects.confirmations.length
 
       // re-fetches the events (and re-renders?) to get new confirmation count
-      showEvents();
-      yourEventCount();
+      location.reload();
 
       // disable "I'm going" or switch it to "I'm not going"
     }).fail(function(jqxhr, textStatus, errorThrown){

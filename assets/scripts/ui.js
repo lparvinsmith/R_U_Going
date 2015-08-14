@@ -28,6 +28,10 @@ $(document).ready(function(){
 
   //INDEX EVENT
   //when page loads, show events
+  MyApi.showEvents();
+
+  //when page loads, count user's events (thru confirmations)
+  MyApi.yourEventCount();
 
   //UPDATE EVENT
   //when click button 'update-event', update new event
