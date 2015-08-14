@@ -100,8 +100,32 @@ var MyApi = (function(){
         $("#authentication-success").html("Login failed! Please try again.");
         console.log('login failed');
       });
+    },
+    createEvent: function(){
+      $.ajax(sa + '/events', {
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+          event: {
+            occurs_at: $("#create-event-date-time").val(),
+            title: $("#create-event-title").val(),
+            venue: $("#create-event-venue").val(),
+            description: $("#create-event-description").val(),
+            link: $("#create-event-link").val()
+          }
+        }),
+        dataType: 'json',
+        method: 'POST',
+        headers: {
+          Authorization: 'Token token=' + simpleStorage.get("token")
+        }
+      }).done(function(data, textStatus, jqxhr){
+        console.log(JSON.stringify(data));
+        location.reload();
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        console.log('create failed');
+      });
     }
-    // createEvent: function(){}
   };
 })();
 
@@ -113,33 +137,6 @@ $(function(){
   showEvents();
   yourEventCount();
 
-
-  //when click button 'create-event', create new event
-  $('#create-event').on('click', function(e) {
-    $.ajax(sa + '/events', {
-      contentType: 'application/json',
-      processData: false,
-      data: JSON.stringify({
-        event: {
-          occurs_at: $("#create-event-date-time").val(),
-          title: $("#create-event-title").val(),
-          venue: $("#create-event-venue").val(),
-          description: $("#create-event-description").val(),
-          link: $("#create-event-link").val()
-        }
-      }),
-      dataType: 'json',
-      method: 'POST',
-      headers: {
-        Authorization: 'Token token=' + simpleStorage.get("token")
-      }
-    }).done(function(data, textStatus, jqxhr){
-      console.log(JSON.stringify(data));
-      location.reload();
-    }).fail(function(jqxhr, textStatus, errorThrown){
-      console.log('create failed');
-    });
-  });
 
   //when click button 'update-event', update new event
   $('#update-event').on('click', function(e) {

@@ -22,6 +22,12 @@ $(document).ready(function(){
 
   //CREATE EVENT
   //when click button 'create-event', create new event
+  $('#create-event').on('click', function(e){
+    MyApi.createEvent();
+  });
+
+  //INDEX EVENT
+  //when page loads, show events
 
   //UPDATE EVENT
   //when click button 'update-event', update new event
