@@ -68,11 +68,15 @@ $(document).ready(function(){
 
   ///////////////////CREATE CONFIRMATION//////////////////
   //when click button 'im-going!', create confirmation
+  $('#events').on('click', '.im-going', function(e) {
+    var id = $(this).data('id');
+    MyApi.createConfirmation(id);
+  });
 
-  //need to change button to 'not-going'
+  // TO DO change button to 'not-going'
 
   ////////////////////DELETE CONFIRMATION////////////////
-  //when click button 'not-going', delete confirmation
+  // TO DO when click button 'not-going', delete confirmation
 
 });
 
