@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
 
-  //AUTHENTICATION
+  /////////////////AUTHENTICATION///////////////////////
   //on when click button register, registers user
   $('#register').on('click', function(e){
     MyApi.register();
@@ -20,21 +20,25 @@ $(document).ready(function(){
     $("#authentication-success").html("You have logged out.");
   });
 
-  //CREATE EVENT
+  ////////////////////CREATE EVENT////////////////////////
   //when click button 'create-event', create new event
   $('#create-event').on('click', function(e){
     MyApi.createEvent();
   });
 
-  //INDEX EVENT
+  //////////////////////INDEX EVENT///////////////////////
   //when page loads, show events
   MyApi.showEvents();
 
   //when page loads, count user's events (thru confirmations)
   MyApi.yourEventCount();
 
-  //UPDATE EVENT
+  //////////////////////UPDATE EVENT//////////////////////
   //when click button 'update-event', update new event
+  $('#update-event').on('click', function(e) {
+    var id = $(this).data('id');
+    MyApi.updateEvent(id);
+  });
 
   //uses data from event --via update button-- to populate event update modal
   $('#eventUpdateModal').on('show.bs.modal', function (event) {
@@ -55,15 +59,15 @@ $(document).ready(function(){
     modal.find('#update-event').data("id", id);
   });
 
-  //DELETE EVENT
+  ///////////////////////DELETE EVENT//////////////////////
   //when click button 'event-destroy', delete event
 
-  //CREATE CONFIRMATION
+  ///////////////////CREATE CONFIRMATION//////////////////
   //when click button 'im-going!', create confirmation
 
   //need to change button to 'not-going'
 
-  //DELETE CONFIRMATION
+  ////////////////////DELETE CONFIRMATION////////////////
   //when click button 'not-going', delete confirmation
 
 });

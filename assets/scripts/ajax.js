@@ -122,6 +122,31 @@ var MyApi = (function(){
       }).fail(function(jqxhr, textStatus, errorThrown){
         console.log('your event count failed');
       });
+    },
+    updateEvent: function(id){
+      $.ajax(sa + '/events/' + id, {
+        contentType: 'application/json',
+        processData: false,
+        data: JSON.stringify({
+          event: {
+            occurs_at: $("#update-event-date-time").val(),
+            title: $("#update-event-title").val(),
+            venue: $("#update-event-venue").val(),
+            description: $("#update-event-description").val(),
+            link: $("#update-event-link").val()
+          }
+        }),
+        dataType: 'json',
+        method: 'PATCH',
+        headers: {
+          Authorization: 'Token token=' + simpleStorage.get("token")
+        }
+      }).done(function(data, textStatus, jqxhr){
+        console.log(JSON.stringify(data));
+        location.reload();
+      }).fail(function(jqxhr, textStatus, errorThrown){
+        console.log('update failed');
+      });
     }
   };
 })();
@@ -132,33 +157,32 @@ $(function(){
 
 
   //when click button 'update-event', update new event
-  $('#update-event').on('click', function(e) {
-    var id = $(this).data('id');
-    // console.log(id);
-    $.ajax(sa + '/events/' + id, {
-      contentType: 'application/json',
-      processData: false,
-      data: JSON.stringify({
-        event: {
-          occurs_at: $("#update-event-date-time").val(),
-          title: $("#update-event-title").val(),
-          venue: $("#update-event-venue").val(),
-          description: $("#update-event-description").val(),
-          link: $("#update-event-link").val()
-        }
-      }),
-      dataType: 'json',
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Token token=' + simpleStorage.get("token")
-      }
-    }).done(function(data, textStatus, jqxhr){
-      console.log(JSON.stringify(data));
-      location.reload();
-    }).fail(function(jqxhr, textStatus, errorThrown){
-      console.log('update failed');
-    });
-  });
+  // $('#update-event').on('click', function(e) {
+  //   var id = $(this).data('id');
+  //   $.ajax(sa + '/events/' + id, {
+  //     contentType: 'application/json',
+  //     processData: false,
+  //     data: JSON.stringify({
+  //       event: {
+  //         occurs_at: $("#update-event-date-time").val(),
+  //         title: $("#update-event-title").val(),
+  //         venue: $("#update-event-venue").val(),
+  //         description: $("#update-event-description").val(),
+  //         link: $("#update-event-link").val()
+  //       }
+  //     }),
+  //     dataType: 'json',
+  //     method: 'PATCH',
+  //     headers: {
+  //       Authorization: 'Token token=' + simpleStorage.get("token")
+  //     }
+  //   }).done(function(data, textStatus, jqxhr){
+  //     console.log(JSON.stringify(data));
+  //     location.reload();
+  //   }).fail(function(jqxhr, textStatus, errorThrown){
+  //     console.log('update failed');
+  //   });
+  // });
 
 
   //when click button 'event-destroy', delete event
