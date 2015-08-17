@@ -31,26 +31,26 @@
 
           <!-- Handlebars list of events -->
           <script id="event-template" type="text/x-handlebars-template">
-          {{#each events}}
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{formatDate occurs_at}}<br>{{title}} at {{venue}}</h3>
-            </div>
-            <div class="panel-body">
-              {{description}}<br>
-              {{#if link}}
-              <a href="{{link}}">Click here for more information</a><br>
-              {{/if}}
-              {{confirmation_count}} going<br>
-              <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
-              <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going:" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
+            {{#each events}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{formatDate occurs_at}}<br>{{title}} at {{venue}}</h3>
+              </div>
+              <div class="panel-body">
+                {{description}}<br>
+                {{#if link}}
+                <a href="{{link}}">Click here for more information</a><br>
+                {{/if}}
+                {{confirmation_count}} going<br>
+                <button class="btn btn-default im-going" data-id={{id}}>Im going!</button>
+                <button class="btn btn-default whos-going" data-toggle="popover" title="Who's going:" data-content="{{#each users}}{{email}}, {{/each}}">See who else is going</button><br>
 
-              <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
+                <button class="btn btn-default update-event" data-occurs="{{occurs_at}}" data-title="{{title}}" data-venue="{{venue}}" data-description="{{description}}" data-link="{{link}}" data-id={{id}} data-toggle="modal" data-target="#eventUpdateModal">Update</button>
 
-              <button class="btn btn-default event-destroy" data-id={{id}}>Delete</button>
+                <button class="btn btn-default event-destroy" data-id={{id}}>Delete</button>
+              </div>
             </div>
-          </div>
-          {{/each}}
+            {{/each}}
           </script>
 
           <!-- Event update modal-->
