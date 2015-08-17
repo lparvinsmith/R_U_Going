@@ -61,6 +61,10 @@ $(document).ready(function(){
 
   ///////////////////////DELETE EVENT//////////////////////
   //when click button 'event-destroy', delete event
+  $("#events").on('click', '.event-destroy', function(){
+    var id = $(this).data('id');
+    MyApi.destroyEvent(id);
+  });
 
   ///////////////////CREATE CONFIRMATION//////////////////
   //when click button 'im-going!', create confirmation

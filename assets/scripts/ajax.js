@@ -147,6 +147,19 @@ var MyApi = (function(){
       }).fail(function(jqxhr, textStatus, errorThrown){
         console.log('update failed');
       });
+    },
+    destroyEvent: function(id){
+      $.ajax(sa + '/events/' + id, {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Token token=' + simpleStorage.get("token")
+        }
+      }).done(function(data){
+        console.log("Deleted event!");
+        location.reload();
+      }).fail(function(data){
+        console.error(data);
+      });
     }
   };
 })();
@@ -156,50 +169,22 @@ $(function(){
   'use strict';
 
 
-  //when click button 'update-event', update new event
-  // $('#update-event').on('click', function(e) {
+
+  //when click button 'event-destroy', delete event
+  // $("#events").on('click', '.event-destroy', function(){
   //   var id = $(this).data('id');
   //   $.ajax(sa + '/events/' + id, {
-  //     contentType: 'application/json',
-  //     processData: false,
-  //     data: JSON.stringify({
-  //       event: {
-  //         occurs_at: $("#update-event-date-time").val(),
-  //         title: $("#update-event-title").val(),
-  //         venue: $("#update-event-venue").val(),
-  //         description: $("#update-event-description").val(),
-  //         link: $("#update-event-link").val()
-  //       }
-  //     }),
-  //     dataType: 'json',
-  //     method: 'PATCH',
+  //     method: 'DELETE',
   //     headers: {
   //       Authorization: 'Token token=' + simpleStorage.get("token")
   //     }
-  //   }).done(function(data, textStatus, jqxhr){
-  //     console.log(JSON.stringify(data));
+  //   }).done(function(data){
+  //     console.log("Deleted event!");
   //     location.reload();
-  //   }).fail(function(jqxhr, textStatus, errorThrown){
-  //     console.log('update failed');
+  //   }).fail(function(data){
+  //     console.error(data);
   //   });
   // });
-
-
-  //when click button 'event-destroy', delete event
-  $("#events").on('click', '.event-destroy', function(){
-    var id = $(this).data('id');
-    $.ajax(sa + '/events/' + id, {
-      method: 'DELETE',
-      headers: {
-        Authorization: 'Token token=' + simpleStorage.get("token")
-      }
-    }).done(function(data){
-      console.log("Deleted event!");
-      location.reload();
-    }).fail(function(data){
-      console.error(data);
-    });
-  });
 
 
   //when click button 'im-going!', create confirmation
