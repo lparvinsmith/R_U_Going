@@ -11,7 +11,7 @@ The back-end uses Ruby on Rails and is deployed on Heroku.
 
 ### Links
 
-- Deployed app: http://lparvinsmith.github.io/Project-2-front-end/
+- Deployed app: http://lparvinsmith.github.io/R_U_Going
 - Backend repo: https://github.com/lparvinsmith/project2-api
 
 Planning documents:
